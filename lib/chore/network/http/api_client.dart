@@ -8,6 +8,9 @@ class ApiResponse<T> {
     required this.statusCode,
     this.headers,
   });
+
+  bool get isSuccessful => statusCode == 200;
+  bool get hasFailed => statusCode != 200;
 }
 
 abstract class ApiClient {
