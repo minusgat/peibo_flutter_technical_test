@@ -4,7 +4,7 @@ part 'paginated_response.g.dart';
 
 typedef V<T> = T Function(Object? json);
 
-@JsonSerializable(genericArgumentFactories: true)
+@JsonSerializable(genericArgumentFactories: true, createToJson: false)
 class PaginatedResponse<T> {
   const PaginatedResponse(
       {required this.count, required this.next, this.previous, this.results});
