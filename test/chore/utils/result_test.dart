@@ -54,6 +54,16 @@ void main() {
       //Act & Assert
       expect(result.asFailureOrNull(), isNull);
     });
+
+    test('Result.emptySuccess returns a Success with EmptyContent', () {
+      //Arrange
+      final result = Result.emptySuccess();
+
+      //Act & Assert
+      expect(result.isSuccess, isTrue);
+      expect(result, isA<Success<EmptyContent>>());
+      expect(result.asSuccessOrNull()?.data, isA<EmptyContent>());
+    });
   });
 
   group('Failure', () {
