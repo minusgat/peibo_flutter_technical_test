@@ -1,3 +1,5 @@
+typedef EmptyResult = Result<EmptyContent>;
+
 abstract class Result<T> {
   const Result();
 
@@ -18,6 +20,8 @@ abstract class Result<T> {
 
     return this as Failure<T>;
   }
+
+  static EmptyResult emptySuccess() => const Success(EmptyContent());
 }
 
 class Success<T> extends Result<T> {
@@ -44,4 +48,8 @@ class Cause {
 
   @override
   String toString() => 'Cause{error: $error, stackTrace: $stackTrace}';
+}
+
+class EmptyContent {
+  const EmptyContent();
 }
