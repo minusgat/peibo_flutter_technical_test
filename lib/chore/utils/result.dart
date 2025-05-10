@@ -1,5 +1,23 @@
 abstract class Result<T> {
   const Result();
+
+  bool get isSuccess => this is Success<T>;
+  bool get isFailure => this is Failure;
+
+  const factory Result.success(T data) = Success;
+  const factory Result.failure(String message, [Cause? cause]) = Failure;
+
+  Success<T>? asSuccessOrNull() {
+    if (!isSuccess) return null;
+
+    return this as Success<T>;
+  }
+
+  Failure<T>? asFailureOrNull() {
+    if (!isFailure) return null;
+
+    return this as Failure<T>;
+  }
 }
 
 class Success<T> extends Result<T> {
