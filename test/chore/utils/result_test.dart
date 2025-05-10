@@ -55,4 +55,52 @@ void main() {
       expect(result.asFailureOrNull(), isNull);
     });
   });
+
+  group('Failure', () {
+    test('can be created with a message', () {
+      //Arrange
+      const failure = Failure('Network error');
+
+      //Act & Assert
+      expect(failure.message, 'Network error');
+      expect(failure.failCause, isNull);
+    });
+
+    test('can be created with a message and a Cause', () {
+      //Arrange
+      final cause = Cause('IOException', StackTrace.current);
+
+      //Act
+      final failure = Failure('File operation failed', cause);
+
+      //Assert
+      expect(failure.message, 'File operation failed');
+      expect(failure.failCause, same(cause));
+    });
+
+
+  });
+
+    group('Cause', () {
+    test('can be created with an error', () {
+      //Arrange
+      const cause = Cause('NullPointerException');
+
+      //Act & Assert
+      expect(cause.error, 'NullPointerException');
+      expect(cause.stackTrace, isNull);
+    });
+
+    test('can be created with an error and a StackTrace', () {
+      //Arrange
+      final stackTrace = StackTrace.current;
+
+      //Act
+      final cause = Cause('FormatException', stackTrace);
+
+      //Assert
+      expect(cause.error, 'FormatException');
+      expect(cause.stackTrace, same(stackTrace));
+    });
+  });
 }
