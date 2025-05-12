@@ -1,0 +1,75 @@
+// ignore_for_file: invalid_visibility_annotation
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/data/providers.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
+
+final pokemonListProvider =
+    AsyncNotifierProvider<PokemonListNotifier, List<Pokemon>>(
+      PokemonListNotifier.new,
+    );
+
+class PokemonListNotifier extends AsyncNotifier<List<Pokemon>> {
+  @visibleForTesting
+  int _currentPage = 0;
+  bool _reachLimit = true;
+  bool _isLoading = false;
+
+  @override
+  Future<List<Pokemon>> build() async => List<Pokemon>.empty();
+
+  Future<void> loadNextPage() async {
+    if (_isLoading || !_reachLimit) return;
+
+    _isLoading = true;
+    final client = ref.read(repositoryProvider);
+
+    const pageSize = 20;
+    final offset = _currentPage * pageSize;
+
+    try {
+      final newPokemons = await client.getPokemons(
+        offset: offset,
+        limit: pageSize,
+      );
+
+      if (newPokemons.isFailure) {
+        final result = newPokemons.asFailureOrNull();
+        final message =
+            result?.message ?? 'An error occurred while fetching the pokemons';
+        final stackTrace = result?.failCause?.stackTrace ?? StackTrace.current;
+        state = AsyncError(message, stackTrace);
+        return;
+      }
+
+      final pokemons = newPokemons.asSuccessOrNull();
+
+      if (pokemons == null) {
+        state = AsyncData([]);
+        return;
+      }
+
+      final result = pokemons.data;
+
+      final List<Pokemon> updatedList = [
+        ...state.value ?? List<Pokemon>.empty(),
+        ...result,
+      ];
+
+      _currentPage++;
+      _reachLimit = result.isNotEmpty;
+      state = AsyncData(updatedList);
+    } catch (e, s) {
+      state = AsyncError(e, s);
+    } finally {
+      _isLoading = false;
+    }
+  }
+
+  void reset() {
+    _currentPage = 0;
+    _reachLimit = true;
+    state = const AsyncData([]);
+  }
+}
