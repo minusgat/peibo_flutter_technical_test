@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class PokemonImageWidget extends StatelessWidget {
@@ -14,6 +15,6 @@ class PokemonImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(imageUrl, width: size, height: size);
+    return CachedNetworkImage(imageUrl: imageUrl, width: size, height: size);
   }
 }
