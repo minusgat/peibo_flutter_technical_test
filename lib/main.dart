@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:peibo_flutter_technical_test/chore/configuration/theme.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_pages.dart';
 
 void main() {
@@ -11,6 +12,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Scaffold(body: PokemonListPage()));
+    return MaterialApp(
+      theme: AppTheme.theme,
+      home: Scaffold(body: PokemonListPage()),
+    );
   }
 }
