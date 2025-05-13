@@ -12,9 +12,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.theme,
-      home: Scaffold(body: PokemonListPage()),
-    );
+    return MaterialApp(theme: AppTheme.theme, home: PokemonListPage());
   }
 }

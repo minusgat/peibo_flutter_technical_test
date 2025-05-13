@@ -35,7 +35,7 @@ void main() {
         (index) => Pokemon(id: index, name: 'Pokemon $index'),
       );
 
-      when(mockRepository.getPokemons(offset: 0, limit: 20)).thenAnswer(
+      when(mockRepository.getPokemons(offset: 0, limit: 1000)).thenAnswer(
         (_) async => Result.success(List<Pokemon>.from(mockPokemons)),
       );
 
@@ -60,7 +60,7 @@ void main() {
 
     // Arrange
     when(
-      mockRepository.getPokemons(offset: 0, limit: 20),
+      mockRepository.getPokemons(offset: 0, limit: 1000),
     ).thenAnswer((_) async => Result.failure('Error fetching pokemons'));
 
     // Act
@@ -81,7 +81,7 @@ void main() {
     );
 
     when(
-      mockRepository.getPokemons(offset: 0, limit: 20),
+      mockRepository.getPokemons(offset: 0, limit: 1000),
     ).thenAnswer((_) async => Result.success(List<Pokemon>.from(mockPokemons)));
 
     // Act
@@ -91,5 +91,7 @@ void main() {
 
     // Assert
     expect(notifier.state, const AsyncData<List<Pokemon>>([]));
+    verify(mockRepository.getPokemons(offset: 0, limit: 1000)).called(2);
+   
   });
 }

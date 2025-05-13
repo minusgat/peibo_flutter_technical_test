@@ -1,6 +1,3 @@
-// ignore_for_file: invalid_visibility_annotation
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/providers.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
@@ -11,7 +8,6 @@ final pokemonListProvider =
     );
 
 class PokemonListNotifier extends AsyncNotifier<List<Pokemon>> {
-  @visibleForTesting
   int _currentPage = 0;
   bool _reachLimit = true;
   bool _isLoading = false;
@@ -25,7 +21,7 @@ class PokemonListNotifier extends AsyncNotifier<List<Pokemon>> {
     _isLoading = true;
     final client = ref.read(repositoryProvider);
 
-    const pageSize = 20;
+    const pageSize = 1000;
     final offset = _currentPage * pageSize;
 
     try {
@@ -71,5 +67,6 @@ class PokemonListNotifier extends AsyncNotifier<List<Pokemon>> {
     _currentPage = 0;
     _reachLimit = true;
     state = const AsyncData([]);
+    loadNextPage();
   }
 }
