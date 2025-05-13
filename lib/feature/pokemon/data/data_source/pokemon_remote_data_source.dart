@@ -23,7 +23,8 @@ class PokemonRemoteDataSource {
       );
 
       if (response.isFailure) {
-        final message = response.asFailureOrNull()?.message??'Failed to load pokemons';
+        final message =
+            response.asFailureOrNull()?.message ?? 'Failed to load pokemons';
         return Result.failure(message);
       }
 

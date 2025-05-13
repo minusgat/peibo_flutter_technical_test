@@ -6,7 +6,7 @@ import 'package:peibo_flutter_technical_test/feature/pokemon/data/models/pokemon
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/repository/pokemon_repository_impl.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
 
-import 'test_utils/mocks.mocks.dart';
+import '../../../../test_utils/mocks.mocks.dart';
 
 void main() {
   late MockPokemonRemoteDataSource mockRemoteDataSource;

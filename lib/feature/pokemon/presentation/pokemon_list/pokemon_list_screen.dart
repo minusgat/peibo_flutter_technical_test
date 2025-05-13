@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_item/pokemon_item.dart';
-import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_view_provider.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_provider.dart';
 
 class PokemonListPage extends ConsumerStatefulWidget {
   const PokemonListPage({super.key});

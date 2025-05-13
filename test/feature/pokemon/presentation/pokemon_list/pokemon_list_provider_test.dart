@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:peibo_flutter_technical_test/chore/utils/result.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/providers.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
-import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_view_provider.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_provider.dart';
 
 import '../../../../test_utils/mocks.mocks.dart';
 
