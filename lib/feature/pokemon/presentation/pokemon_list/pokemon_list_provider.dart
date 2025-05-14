@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:peibo_flutter_technical_test/chore/utils/result.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/providers.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
 
