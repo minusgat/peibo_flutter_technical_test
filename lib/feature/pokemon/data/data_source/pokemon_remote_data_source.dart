@@ -57,12 +57,7 @@ class PokemonRemoteDataSource with ResponseHandler {
         decoder: (data) => PokemonDetailModel.fromJson(data),
       );
 
-      final result = handleResponse(
-        response,
-        (data) => data as PokemonDetailModel,
-      );
-
-      return result;
+      return handleResponse(response, (r) => r.data as PokemonDetailModel);
     } catch (e, stackTrace) {
       final message = 'Failed to load pokemon';
       log('Error: $e');
@@ -84,11 +79,7 @@ class PokemonRemoteDataSource with ResponseHandler {
         (data) => data as PokemonSpecieModel,
       );
       return result;
-    } catch (e, stackTrace) {
-      final message = 'Failed to load pokemon specie';
-      log('Error: $e');
-      log('StackTrace: $stackTrace');
-      log('Message: $message');
+      return handleResponse(response, (r) => r.data as PokemonSpecieModel);
       return Result.failure(message, Cause(e, stackTrace));
     }
   }
