@@ -42,7 +42,7 @@ class PokemonRemoteDataSource with ResponseHandler {
 
       return Result.success(result);
     } catch (e, stackTrace) {
-      final message = 'Failed to load pokemon';
+      final message = 'Failed to load pokemons';
       log('Error: $e');
       log('StackTrace: $stackTrace');
       log('Message: $message');
