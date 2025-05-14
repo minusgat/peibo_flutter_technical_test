@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:peibo_flutter_technical_test/chore/network/http/dio_client/dio_client.dart';
 import 'package:peibo_flutter_technical_test/chore/utils/result.dart';
+import 'package:peibo_flutter_technical_test/chore/utils/result_response_handler.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/models/models.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/data/models/pokemon_detail/pokemon_detail.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/data/models/pokemon_specie/pokemon_specie_model.dart';
 
-class PokemonRemoteDataSource {
+class PokemonRemoteDataSource with ResponseHandler {
   final DioApiClient dioApiClient;
 
   PokemonRemoteDataSource(this.dioApiClient);
@@ -37,7 +42,54 @@ class PokemonRemoteDataSource {
 
       return Result.success(result);
     } catch (e, stackTrace) {
-      return Result.failure('Failed to load pokemons', Cause(e, stackTrace));
+      final message = 'Failed to load pokemons';
+      log('Error: $e');
+      log('StackTrace: $stackTrace');
+      log('Message: $message');
+      return Result.failure(message, Cause(e, stackTrace));
+    }
+  }
+
+  Future<Result<PokemonDetailModel>> getPokemon({required int id}) async {
+    try {
+      final response = await dioApiClient.get(
+        '/pokemon/$id',
+        decoder: (data) => PokemonDetailModel.fromJson(data),
+      );
+
+      final result = handleResponse(
+        response,
+        (data) => data as PokemonDetailModel,
+      );
+
+      return result;
+    } catch (e, stackTrace) {
+      final message = 'Failed to load pokemon';
+      log('Error: $e');
+      log('StackTrace: $stackTrace');
+      log('Message: $message');
+      return Result.failure(message, Cause(e, stackTrace));
+    }
+  }
+
+  Future<Result<PokemonSpecieModel>> getPokemonSpecie({required int id}) async {
+    try {
+      final response = await dioApiClient.get(
+        '/pokemon-species/$id',
+        decoder: (data) => PokemonSpecieModel.fromJson(data),
+      );
+
+      final result = handleResponse(
+        response,
+        (data) => data as PokemonSpecieModel,
+      );
+      return result;
+    } catch (e, stackTrace) {
+      final message = 'Failed to load pokemon specie';
+      log('Error: $e');
+      log('StackTrace: $stackTrace');
+      log('Message: $message');
+      return Result.failure(message, Cause(e, stackTrace));
     }
   }
 }
