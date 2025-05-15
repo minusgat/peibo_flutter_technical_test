@@ -15,6 +15,9 @@ class PokemonImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(imageUrl: imageUrl, width: size, height: size);
+    return Hero(
+      tag: imageUrl,
+      child: CachedNetworkImage(imageUrl: imageUrl, width: size, height: size),
+    );
   }
 }
