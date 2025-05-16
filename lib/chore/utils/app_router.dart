@@ -2,12 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'result.dart'; // Tu implementación de Result
+import 'result.dart';
 
-typedef RouteResult<T> = Result<T>; // Resultado genérico con datos
+typedef RouteResult<T> = Result<T>;
 
 abstract class AppRouter {
   Future<RouteResult<T>> push<T>(WidgetBuilder builder);
+  //back
+  void pop<T>([T? result]);
 }
 
 class AppRouterImpl implements AppRouter {
@@ -38,6 +40,19 @@ class AppRouterImpl implements AppRouter {
       log('StackTrace: $st');
       log('Message: Navigator error');
       return Result.failure(message, Cause(e, st));
+    }
+  }
+
+  @override
+  void pop<T>([T? result]) {
+    try {
+      return _navigator.pop<T>(result);
+    } catch (e, st) {
+      final message = 'Navigator error';
+      log('Navigator error: $e');
+      log('StackTrace: $st');
+      log('Message: Navigator error');
+      throw FlutterError(message);
     }
   }
 }
