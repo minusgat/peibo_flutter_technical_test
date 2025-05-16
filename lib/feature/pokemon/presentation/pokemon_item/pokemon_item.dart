@@ -30,7 +30,7 @@ class PokemonItem extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Pokeball(size: size * .6),
         )
-        : PokemonImageWidget(size: size, imageUrl: pokemon.photoUrl!);
+        : PokemonImage(size: size, imageUrl: pokemon.photoUrl!);
   }
 
   Transform _backgroundDecoration(BuildContext context) {
