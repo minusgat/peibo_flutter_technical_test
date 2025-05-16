@@ -1,6 +1,8 @@
 # Peibo Flutter technicalt challenge
 
-This is a technical challenge for Peibo Flutter developer position. The challenge is designed to evaluate skills in Flutter development, including  ability to write clean, maintainable code and understanding of best practices in Flutter and Software development.
+This is a technical challenge for Peibo Flutter developer position. 
+
+The challenge is designed to evaluate skills in Flutter development, including  ability to write clean, maintainable code and understanding of best practices in Flutter and Software development.
 
 ![Preview](/ui_proposal.png)
 
@@ -66,7 +68,32 @@ lib/
 
 ## Instructions
 1. Clone the repository.
-2. Run `make run` to generate,build and run on release mode.
+2. Ensure you have Flutter installed and set up on your machine with `3.29.2`
+2. Execute on your terminal `make run` to generate,build and run.
 
 ## Deemo
 ![Demo](/pokemon-app-demo.gif)
+
+
+## Improvements proposal
+
+1. **Automated Deployment**: Set up CI/CD pipelines for automated testing and deployment to platforms like Firebase or App Store instead bitrise,codemagic or other services.
+
+2. **Caching**: Implement caching mechanisms for API responses to improve performance and reduce network calls.
+
+4. **Monitoring and Analytics**: Integrate monitoring tools (like Firebase Crashlytics) to track app performance and user behavior.
+
+5. **Accessibility**: Ensure the app is accessible to all users by following accessibility guidelines and best practices.
+
+* Estimate time: 2-3 weeks.
+
+## Conclusion
+This project is a demonstration of the ability to build a Flutter application using clean architecture principles, state management with Riverpod, and API integration with Dio. 
+
+The code is structured to be maintainable and scalable, allowing for future enhancements and features.
+
+Unit tests are included to ensure the reliability of the codebase, and the app is designed with best practices in mind. 
+
+Basic github actions are included to ensure the code is always in a deployable state.
+
+The app is a simple yet effective demonstration of the skills and knowledge required for a Flutter developer position at Peibo and was maked with a lot of  ❤️.
