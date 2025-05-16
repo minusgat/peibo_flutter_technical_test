@@ -43,7 +43,11 @@ class PokemonDetailScreen extends ConsumerWidget {
           ),
           Transform.scale(
             scale: 1.2,
-            child: PokemonItemDetail(pokemon: pokemon, size: size),
+            child: PokemonDetailItem(pokemon: pokemon, size: size),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: PokemonDetailPageIndicator(),
           ),
           CustomAppBar(
             toolbarHeight: toolbarHeight,
