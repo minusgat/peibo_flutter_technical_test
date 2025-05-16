@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peibo_flutter_technical_test/common/widgets/shiny_bouncing_container.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/common/utils/pokemon_name_formater.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/common/widgets/pokemon_image.dart';
@@ -17,6 +18,8 @@ class PokemonDetailItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const textStyle = TextStyle(fontSize: 56, fontWeight: FontWeight.w600);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Stack(
@@ -33,15 +36,12 @@ class PokemonDetailItem extends StatelessWidget {
                 ),
                 Transform.translate(
                   offset: const Offset(0, -20),
-                  child: Text(
-                    ' ${pokemon.name.capitalize}',
-                    style: const TextStyle(
-                      fontSize: 64,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  child: Text(' ${pokemon.name.capitalize}', style: textStyle),
                 ),
-                PokemonBagPokeball(pokemon: pokemon),
+                ShinyBouncingContainer(
+                  loops: 3,
+                  child: PokemonBagPokeball(pokemon: pokemon),
+                ),
               ],
             ),
           ),
