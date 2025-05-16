@@ -51,6 +51,15 @@ class _PokemonListState extends ConsumerState<PokemonList> {
 
     return Stack(
       children: [
+        Positioned(
+          bottom: -60,
+          left: -60,
+          child: Image.asset(
+            'assets/pokeball_traslucent.png',
+            width: 300,
+            height: 300,
+          ),
+        ),
         RefreshIndicator(
           onRefresh: () async => _reset(),
           child: CustomScrollView(
