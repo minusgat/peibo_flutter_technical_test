@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:peibo_flutter_technical_test/chore/provider.dart';
 import 'package:peibo_flutter_technical_test/chore/utils/result.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/providers.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_detail/pokemon_detail_screen.dart';
 
 final pokemonListProvider =
     AsyncNotifierProvider<PokemonListNotifier, List<Pokemon>>(
@@ -69,5 +73,15 @@ class PokemonListNotifier extends AsyncNotifier<List<Pokemon>> {
     _reachLimit = true;
     state = const AsyncData([]);
     loadNextPage();
+  }
+
+  Future<void> showPokemonDetail(Pokemon pokemon) async {
+    final router = ref.read(routerProvider);
+
+    final result = await router.push(
+      (context) => PokemonDetailScreen(pokemon: pokemon, size: 600),
+    );
+
+    log('Result: $result');
   }
 }
