@@ -35,4 +35,4 @@ build: ## Interactive build command
 	fi
 run: ## Run the project
 	make clean
-	flutter run --release
+	flutter run
