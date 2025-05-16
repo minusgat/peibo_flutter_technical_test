@@ -4,6 +4,7 @@ import 'package:peibo_flutter_technical_test/common/widgets/custom_app_bar.dart'
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_detail/pokemon_detail.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_detail/widgets/pokemon_detail_circle_background.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_detail/widgets/pokemon_detail_page_indicator.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_detail/widgets/pokemon_detail_surface_color.dart';
 
 class PokemonDetailScreen extends ConsumerWidget {
