@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:peibo_flutter_technical_test/chore/provider.dart';
 import 'package:peibo_flutter_technical_test/chore/utils/result.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/data/providers.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pokemon.dart';
@@ -11,11 +12,16 @@ import '../../../../test_utils/mocks.mocks.dart';
 void main() {
   late MockPokemonRepositoryImpl mockRepository;
   late ProviderContainer container;
+  late MockAppRouterImpl mockAppRouter;
 
   setUp(() {
+    mockAppRouter = MockAppRouterImpl();
     mockRepository = MockPokemonRepositoryImpl();
     container = ProviderContainer(
-      overrides: [repositoryProvider.overrideWithValue(mockRepository)],
+      overrides: [
+        repositoryProvider.overrideWithValue(mockRepository),
+        routerProvider.overrideWithValue(mockAppRouter),
+      ],
     );
   });
 
@@ -26,9 +32,8 @@ void main() {
   test(
     'loadNextPage should update state with new pokemons on success',
     () async {
-    
       final notifier = container.read(pokemonListProvider.notifier);
-      
+
       // Arrange
       final mockPokemons = List.generate(
         3,
@@ -73,7 +78,7 @@ void main() {
 
   test('reset should clear the state and reset pagination', () async {
     final notifier = container.read(pokemonListProvider.notifier);
-    
+
     // Arrange
     final mockPokemons = List.generate(
       3,
@@ -92,6 +97,21 @@ void main() {
     // Assert
     expect(notifier.state, const AsyncData<List<Pokemon>>([]));
     verify(mockRepository.getPokemons(offset: 0, limit: 1000)).called(2);
-   
+  });
+
+  //show detail
+  test('showPokemonDetail should call AppRouter push method', () {
+    final notifier = container.read(pokemonListProvider.notifier);
+
+    // Arrange
+    when(mockAppRouter.push(any)).thenAnswer((_) async => Result.success(null));
+
+    final pokemon = Pokemon(id: 1, name: 'Pikachu');
+
+    // Act
+    notifier.showPokemonDetail(pokemon);
+
+    // Assert
+    verify(mockAppRouter.push(any)).called(1);
   });
 }
