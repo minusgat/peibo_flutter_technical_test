@@ -4,6 +4,7 @@ import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pok
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_item/pokemon_item.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_appbar.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_list/pokemon_list_provider.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokeon_bag/pokemon_bag.dart';
 
 class PokemonList extends ConsumerStatefulWidget {
   const PokemonList({super.key, required this.pokemons});
@@ -74,6 +75,17 @@ class _PokemonListState extends ConsumerState<PokemonList> {
                 }, childCount: widget.pokemons.length),
               ),
             ],
+          ),
+        ),
+        Positioned(
+          top: 150,
+          left: 10,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * .8,
+              maxWidth: MediaQuery.of(context).size.width * .1,
+            ),
+            child: PokemonBag(),
           ),
         ),
       ],
