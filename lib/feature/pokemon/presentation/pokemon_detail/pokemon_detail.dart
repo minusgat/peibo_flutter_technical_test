@@ -3,9 +3,10 @@ import 'package:peibo_flutter_technical_test/feature/pokemon/domain/entities/pok
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/common/utils/pokemon_name_formater.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/common/widgets/pokemon_image.dart';
 import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokemon_detail/widgets/pokemon_detail_badge.dart';
+import 'package:peibo_flutter_technical_test/feature/pokemon/presentation/pokeon_bag/pokemon_bag_pokeball.dart';
 
-class PokemonItemDetail extends StatelessWidget {
-  const PokemonItemDetail({
+class PokemonDetailItem extends StatelessWidget {
+  const PokemonDetailItem({
     super.key,
     required this.pokemon,
     required this.size,
@@ -40,6 +41,7 @@ class PokemonItemDetail extends StatelessWidget {
                     ),
                   ),
                 ),
+                PokemonBagPokeball(pokemon: pokemon),
               ],
             ),
           ),
